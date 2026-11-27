@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پیکربندی خودرو | انتخاب محیط</title>
+  </head>
+  <body>
+    <canvas id="stage"></canvas>
+
+    <div id="ui">
+      <header class="panel brand">
+        <p class="eyebrow">استودیو طراحی</p>
+        <h1>پیکربندی خودرو</h1>
+        <p class="hint">با ماوس بچرخانید، با اسکرول زوم کنید</p>
+      </header>
+
+      <section class="panel env-picker" aria-labelledby="env-title">
+        <div class="panel-head">
+          <h2 id="env-title">انتخاب محیط</h2>
+          <span id="env-badge" class="badge">آفتابی</span>
+        </div>
+
+        <div class="env-grid" role="radiogroup" aria-label="انتخاب محیط">
+          <button class="env" data-env="sunny" role="radio" aria-checked="true">
+            <span class="env-thumb" data-thumb="sunny" aria-hidden="true"></span>
+            <span class="env-label">آفتابی</span>
+            <span class="env-sub">آسمان آبی، نور تند</span>
+          </button>
+
+          <button class="env" data-env="rainy" role="radio" aria-checked="false">
+            <span class="env-thumb" data-thumb="rainy" aria-hidden="true"></span>
+            <span class="env-label">بارانی</span>
+            <span class="env-sub">باران و سطح خیس</span>
+          </button>
+
+          <button class="env" data-env="sunset" role="radio" aria-checked="false">
+            <span class="env-thumb" data-thumb="sunset" aria-hidden="true"></span>
+            <span class="env-label">غروب</span>
+            <span class="env-sub">نور نارنجی افق</span>
+          </button>
+
+          <button class="env" data-env="night" role="radio" aria-checked="false">
+            <span class="env-thumb" data-thumb="night" aria-hidden="true"></span>
+            <span class="env-label">شب</span>
+            <span class="env-sub">چراغ‌ها و ستاره‌ها</span>
+          </button>
+
+          <button class="env" data-env="snowy" role="radio" aria-checked="false">
+            <span class="env-thumb" data-thumb="snowy" aria-hidden="true"></span>
+            <span class="env-label">برفی</span>
+            <span class="env-sub">مه، برف و جاده سفید</span>
+          </button>
+        </div>
+
+        <div class="env-actions">
+          <button id="auto-rotate" class="ghost" aria-pressed="true">چرخش خودکار: روشن</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="loading"><span class="spinner"></span> در حال آماده‌سازی محیط…</div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
