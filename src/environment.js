@@ -61,7 +61,6 @@ const RAIN_VERT = /* glsl */ `
   uniform float uTime;
   uniform float uHeight;
   uniform float uLength;
-  uniform float uSize;
   varying float vTip;
   void main() {
     vTip = aTip;
@@ -69,9 +68,7 @@ const RAIN_VERT = /* glsl */ `
     p.y = mod(p.y - uTime * aSpeed, uHeight);
     p.y += aTip * uLength;
     p.x += sin(aSeed * 6.283 + uTime * 0.6) * 0.08;
-    vec4 mv = modelViewMatrix * vec4(p, 1.0);
-    gl_PointSize = uSize;
-    gl_Position = projectionMatrix * mv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
   }
 `;
 
@@ -163,6 +160,9 @@ export class Environment {
     this.renderer = renderer;
     this.time = 0;
     this.blend = 1;
+
+    // fog is set once so the car materials compile with fog support
+    this.scene.fog = new THREE.FogExp2(0xcfe3f2, 0.0075);
 
     this._buildSky();
     this._buildLights();
@@ -355,7 +355,6 @@ export class Environment {
       uTime: { value: 0 },
       uHeight: { value: H },
       uLength: { value: 0.75 },
-      uSize: { value: 1 },
       uColor: { value: new THREE.Color("#b9cde0") },
       uOpacity: { value: 0 },
     };
@@ -431,7 +430,6 @@ export class Environment {
       transparent: true,
       opacity: 0.85,
       depthWrite: false,
-      depthTest: false,
       fog: false,
       blending: THREE.AdditiveBlending,
       color: new THREE.Color("#fff3d6"),
@@ -528,7 +526,6 @@ export class Environment {
     this.hemi.groundColor.copy(st.hemiGround);
     this.hemi.intensity = st.hemiPower;
 
-    this.scene.fog = this.scene.fog || new THREE.FogExp2(0xffffff, 0.008);
     this.scene.fog.color.copy(st.fogColor);
     this.scene.fog.density = st.fogDensity;
 
@@ -662,7 +659,9 @@ export class Environment {
     this.stars.position.copy(camera.position);
     this.stars.rotation.y = elapsed * 0.004;
 
-    // particle animation
+    // particles always surround the viewer
+    this.rain.position.set(camera.position.x, 0, camera.position.z);
+    this.snow.position.set(camera.position.x, 0, camera.position.z);
     this.rainUniforms.uTime.value = elapsed;
     this.snowUniforms.uTime.value = elapsed;
 

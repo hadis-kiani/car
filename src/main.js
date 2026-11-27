@@ -190,8 +190,8 @@ function resize() {
   const w = window.innerWidth;
   const h = window.innerHeight;
   camera.aspect = w / h;
-  // nudge the framing so the car is not hidden behind the side panel on wide screens
-  if (w / h > 1.4) camera.setViewOffset(w, h, -w * 0.06, 0, w, h);
+  // nudge the framing left so the car clears the panel on wide screens
+  if (w / h > 1.4) camera.setViewOffset(w, h, w * 0.055, 0, w, h);
   else camera.clearViewOffset();
   camera.updateProjectionMatrix();
   renderer.setSize(w, h);
