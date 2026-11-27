@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی ماشین — انتخاب محیط</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- صفحه‌ی اصلی منوی بازی -->
+    <section id="menu-screen" class="screen active">
+        <div class="menu-card">
+            <h1 class="game-title">🚗 بازی ماشین</h1>
+            <p class="game-subtitle">برای رانندگی در محیطی موردعلاقه‌ت را انتخاب کن</p>
+            <button class="btn btn-primary" id="btn-go-env">انتخاب محیط</button>
+            <button class="btn btn-ghost" id="btn-about">روش بازی</button>
+        </div>
+    </section>
+
+    <!-- منوی جدید: انتخاب محیط -->
+    <section id="env-screen" class="screen">
+        <div class="menu-card wide">
+            <h2 class="menu-title">انتخاب محیط</h2>
+            <p class="menu-subtitle">یکی از محیط‌ها را انتخاب کن تا بازی را با آن شروع کن</p>
+            <div class="env-grid">
+                <button class="env-card" data-env="sunny">
+                    <span class="env-icon">☀️</span>
+                    <span class="env-name">آفتابی</span>
+                </button>
+                <button class="env-card" data-env="day">
+                    <span class="env-icon">🌞</span>
+                    <span class="env-name">روز</span>
+                </button>
+                <button class="env-card" data-env="night">
+                    <span class="env-icon">🌙</span>
+                    <span class="env-name">شب</span>
+                </button>
+                <button class="env-card" data-env="rainy">
+                    <span class="env-icon">🌧️</span>
+                    <span class="env-name">بارونی</span>
+                </button>
+                <button class="env-card" data-env="snowy">
+                    <span class="env-icon">❄️</span>
+                    <span class="env-name">برفی</span>
+                </button>
+                <button class="env-card" data-env="sunset">
+                    <span class="env-icon">🌅</span>
+                    <span class="env-name">غروب</span>
+                </button>
+            </div>
+            <button class="btn btn-ghost" id="btn-back-menu">بازگشت به منوی اصلی</button>
+        </div>
+    </section>
+
+    <!-- صفحه‌ی توضیح روش بازی -->
+    <section id="help-screen" class="screen">
+        <div class="menu-card">
+            <h2 class="menu-title">روش بازی</h2>
+            <ul class="help-list">
+                <li>کلید <b>جهتی (← →)</b> یا <b>A / D</b> برای چرخش و تغییر لاین</li>
+                <li>کلید <b>بالا (↑)</b> یا <b>W</b> برای شتاب و <b>پایین (↓)</b> یا <b>S</b> برای ترمز</li>
+                <li>با انتخاب هر محیط، هوا، نور و بارش بازی تغییر می‌کند</li>
+                <li>برای بازگشت به منوی انتخاب محیط، روی <b>Esc</b> بزن</li>
+            </ul>
+            <button class="btn btn-ghost" id="btn-back-help">بازگشت</button>
+        </div>
+    </section>
+
+    <!-- صفحه‌ی بازی -->
+    <section id="game-screen" class="screen">
+        <canvas id="game-canvas"></canvas>
+        <div class="game-hud">
+            <div class="hud-env" id="hud-env">محیط: —</div>
+            <div class="hud-speed" id="hud-speed">سرعت: ۰</div>
+        </div>
+        <div class="game-controls">
+            <button class="btn btn-ghost small" id="btn-pause">متوقف کردن</button>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
